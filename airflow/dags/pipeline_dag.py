@@ -21,6 +21,12 @@ default_args = {
 }
 
 
+DBT_PROJECT_DIR = os.environ.get('DBT_PROFILES_DIR')
+DBT_DOCS_DIR = os.path.join(PROJECT_HOME, 'include', 'dbt_docs')
+GE_ROOT_DIR = os.environ.get('GE_DIR')
+GE_TARGET_DIR = os.path.join(GE_ROOT_DIR, 'uncommitted', 'data_docs')
+GE_DOCS_DIR = os.path.join(PROJECT_HOME, 'include', 'great_expectations_docs')
+
 with DAG(
     "dAG Stack Pipeline",
     default_args=default_args,
