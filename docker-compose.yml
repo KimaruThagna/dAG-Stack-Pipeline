@@ -34,9 +34,11 @@ services:
     environment: 
       DBT_PROFILES_DIR: /dbt
       AIRFLOW_HOME: /airflow
+      DATA_DIR: /data
       GE_DIR: /great_expectations
       GE_DOCS: /docs/ge
       DBT_DOCS: /docs/dbt
+      DBT_PORT: 8003
       AIRFLOW__CORE__DAGS_FOLDER: /airflow/dags
       AIRFLOW__CORE__PARALLELISM: 4
       AIRFLOW__CORE__DAG_CONCURRENCY: 4
@@ -82,11 +84,3 @@ services:
       - 8081:80
     volumes: 
       - ./docs/ge/data_docs/local_site:/static
-
-  ge_data_docs:
-    image: flashspys/nginx-static
-    container_name: dbt_data_docs
-    ports:
-      - 8081:8000
-    volumes: 
-      - ./docs/dbt/data_docs/local_site:/static

@@ -3,7 +3,7 @@ import os
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.bash_operator import BashOperator
-
+from great_expectations_provider.operators.great_expectations import GreatExpectationsOperator
 from airflow.utils.dates import days_ago
 
 DBT_DIR = os.environ.get("DBT_PROFILES_DIR")
@@ -20,12 +20,12 @@ default_args = {
     "catchup": False,
 }
 
-
+DATA_DIR = os.environ.get('DATA_DIR')
 DBT_PROJECT_DIR = os.environ.get('DBT_PROFILES_DIR')
-DBT_DOCS_DIR = os.path.join(PROJECT_HOME, 'include', 'dbt_docs')
+DBT_DOCS_DIR = os.environ.get('DBT_DOCS')
 GE_ROOT_DIR = os.environ.get('GE_DIR')
-GE_TARGET_DIR = os.path.join(GE_ROOT_DIR, 'uncommitted', 'data_docs')
-GE_DOCS_DIR = os.path.join(PROJECT_HOME, 'include', 'great_expectations_docs')
+GE_DOCS_DIR = os.environ.get('GE_DOCS')
+DBT_PORT = os.environ.get('DBT_PORT')
 
 with DAG(
     "dAG Stack Pipeline",
@@ -33,6 +33,22 @@ with DAG(
     schedule_interval=timedelta(days=1),
 ) as dag:
     
+# This first step validates the source data files and only proceeds with loading
+# if they pass validation with Great Expectations
+    validate_source_data = GreatExpectationsOperator( # can have more than one expectation suite
+    task_id='validate_source_data',
+    assets_to_validate = [
+        {
+            'batch_kwargs': {
+                'path': f'{DATA_DIR}/mock_transaction_data.csv',
+                'datasource': 'data_dir'
+            },
+            'expectation_suite_name': 'bank_transactions.source'
+        },
+       
+    ],
+    data_context_root_dir=GE_ROOT_DIR
+)
     dbt_seed = BashOperator(
         task_id="dbt_seed",
         bash_command=f"cd {DBT_DIR} && dbt seed --profiles-dir {DBT_DIR} --project-dir {DBT_DIR}",
@@ -45,6 +61,37 @@ with DAG(
         task_id="dbt_run",
         bash_command=f"cd {DBT_DIR} && dbt run --profiles-dir {DBT_DIR} --project-dir {DBT_DIR}",
     )
+    validate_dbt_data = GreatExpectationsOperator( # sample showing dealing with single suite
+    task_id='validate_transform',
+    expectation_suite_name='analytical_output.final',
+    batch_kwargs={
+        'datasource': 'postgres_astro',
+        'table': 'pickup_dropoff_borough_counts',
+        'data_asset_name': 'pickup_dropoff_borough_counts'
+    },
+    data_context_root_dir=GE_ROOT_DIR
+)
+    
+    dbt_docs_generate = BashOperator(
+    task_id='dbt_docs_generate',
+    bash_command=f'cd {DBT_DIR} && dbt docs generate \
+    --profiles-dir {DBT_DIR} \
+    --target {DBT_DOCS_DIR} \
+    --project-dir {DBT_PROJECT_DIR}',
+)
+    # This task re-builds the Great Expectations docs
+    ge_docs_generate = BashOperator(
+    task_id='ge_docs_generate',
+    bash_command=f'great_expectations docs build --directory {GE_ROOT_DIR} --assume-yes'
+)
+    dbt_docs_serve = BashOperator(
+    task_id='dbt_docs_generate',
+    bash_command=f'cd {DBT_DIR} && dbt docs serve \
+    --profiles-dir {DBT_DIR} \
+    --target {DBT_DOCS_DIR} \
+    --project-dir {DBT_PROJECT_DIR} \
+    --port {DBT_PORT}',
+)
     dbt_cleanup = BashOperator(
         task_id="dbt_cleanup",
         bash_command=f"cd {DBT_DIR} && dbt clean --profiles-dir {DBT_DIR} --project-dir {DBT_DIR}",
@@ -52,4 +99,5 @@ with DAG(
 
    
 
-    dbt_seed >> dbt_test >> dbt_run >> dbt_cleanup 
+    validate_source_data >> dbt_seed >> dbt_test >> dbt_run >> \
+    validate_dbt_data >> [ge_docs_generate >> dbt_docs_generate] >>dbt_docs_serve >> dbt_cleanup 
