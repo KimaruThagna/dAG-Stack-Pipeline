@@ -27,9 +27,6 @@ with DAG(
     schedule_interval=timedelta(days=1),
 ) as dag:
     
-    dbt_packages = BashOperator(
-        task_id="dbt_packages", bash_command=f"cd {DBT_DIR} && dbt deps"
-    )
     dbt_seed = BashOperator(
         task_id="dbt_seed",
         bash_command=f"cd {DBT_DIR} && dbt seed --profiles-dir {DBT_DIR} --project-dir {DBT_DIR}",
@@ -49,4 +46,4 @@ with DAG(
 
    
 
-    dbt_packages >> dbt_seed >> dbt_test >> dbt_run >> dbt_cleanup 
+    dbt_seed >> dbt_test >> dbt_run >> dbt_cleanup 
