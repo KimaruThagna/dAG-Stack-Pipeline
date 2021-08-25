@@ -19,17 +19,16 @@ default_args = {
     "retry_delay": timedelta(minutes=5),
     "catchup": False,
 }
-
+ROOT = os.getcwd()
 DATA_DIR = os.environ.get('DATA_DIR')
-DBT_PROJECT_DIR = os.environ.get('DBT_PROFILES_DIR')
+DBT_DIR = os.environ.get('DBT_PROFILES_DIR')
 DBT_DOCS_DIR = os.environ.get('DBT_DOCS')
-DBT_PORT = os.environ.get('DBT_PORT')
 GE_ROOT_DIR = os.environ.get('GE_DIR')
 GE_DOCS_DIR = os.environ.get('GE_DOCS')
 
 
 with DAG(
-    "dAG Stack Pipeline",
+    "dAG_Stack_Pipeline",
     default_args=default_args,
     schedule_interval=timedelta(days=1),
 ) as dag:
@@ -73,18 +72,18 @@ with DAG(
 #     data_context_root_dir=GE_ROOT_DIR
 # )
     
-    dbt_docs_generate = BashOperator(
-    task_id='dbt_docs_generate',
-    bash_command=f'cd {DBT_DIR} && dbt docs generate \
-    --profiles-dir {DBT_DIR} \
-    --target {DBT_DOCS_DIR} \
-    --project-dir {DBT_PROJECT_DIR}',
-)
-    # This task re-builds the Great Expectations docs
-    ge_docs_generate = BashOperator(
-    task_id='ge_docs_generate',
-    bash_command=f'great_expectations --v3-api docs build  --directory {GE_ROOT_DIR} --assume-yes'
-)
+#     dbt_docs_generate = BashOperator(
+#     task_id='dbt_docs_generate',
+#     bash_command=f'cd {DBT_DIR} && dbt docs generate \
+#     --profiles-dir {DBT_DIR} \
+#     --target {DBT_DOCS_DIR} \
+#     --project-dir {DBT_DIR}',
+# )
+#     # This task re-builds the Great Expectations docs
+#     ge_docs_generate = BashOperator(
+#     task_id='ge_docs_generate',
+#     bash_command=f'great_expectations --v3-api docs build  --directory {GE_ROOT_DIR} --assume-yes'
+# )
     
     dbt_cleanup = BashOperator(
         task_id="dbt_cleanup",
@@ -93,5 +92,5 @@ with DAG(
 
    
 
-    validate_source_data >> dbt_seed >> dbt_test >> dbt_run
+validate_source_data >> dbt_seed >> dbt_test >> dbt_run >> dbt_cleanup 
     #validate_dbt_data >> [ge_docs_generate >> dbt_docs_generate] >> dbt_cleanup 

@@ -66,6 +66,7 @@ services:
       - ./data:/data
       - ./dbt:/dbt
       - ./airflow:/airflow
+      - ./great_expectations:/great_expectations
 
   adminer:
     image: adminer
