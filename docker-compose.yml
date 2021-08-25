@@ -81,6 +81,14 @@ services:
     image: flashspys/nginx-static
     container_name: ge_data_docs
     ports:
-      - 8081:80
+      - 8087:80
     volumes: 
-      - ./docs/ge/data_docs/local_site:/static
+      - ./docs/ge:/static
+
+  dbt_data_docs:
+    image: flashspys/nginx-static
+    container_name: dbt_data_docs
+    ports:
+      - 8089:80
+    volumes: 
+      - ./docs/dbt:/static

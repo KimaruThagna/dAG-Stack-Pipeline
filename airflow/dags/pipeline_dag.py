@@ -23,9 +23,10 @@ default_args = {
 DATA_DIR = os.environ.get('DATA_DIR')
 DBT_PROJECT_DIR = os.environ.get('DBT_PROFILES_DIR')
 DBT_DOCS_DIR = os.environ.get('DBT_DOCS')
+DBT_PORT = os.environ.get('DBT_PORT')
 GE_ROOT_DIR = os.environ.get('GE_DIR')
 GE_DOCS_DIR = os.environ.get('GE_DOCS')
-DBT_PORT = os.environ.get('DBT_PORT')
+
 
 with DAG(
     "dAG Stack Pipeline",
@@ -84,14 +85,7 @@ with DAG(
     task_id='ge_docs_generate',
     bash_command=f'great_expectations docs build --directory {GE_ROOT_DIR} --assume-yes'
 )
-    dbt_docs_serve = BashOperator(
-    task_id='dbt_docs_generate',
-    bash_command=f'cd {DBT_DIR} && dbt docs serve \
-    --profiles-dir {DBT_DIR} \
-    --target {DBT_DOCS_DIR} \
-    --project-dir {DBT_PROJECT_DIR} \
-    --port {DBT_PORT}',
-)
+    
     dbt_cleanup = BashOperator(
         task_id="dbt_cleanup",
         bash_command=f"cd {DBT_DIR} && dbt clean --profiles-dir {DBT_DIR} --project-dir {DBT_DIR}",
@@ -100,4 +94,4 @@ with DAG(
    
 
     validate_source_data >> dbt_seed >> dbt_test >> dbt_run >> \
-    validate_dbt_data >> [ge_docs_generate >> dbt_docs_generate] >>dbt_docs_serve >> dbt_cleanup 
+    validate_dbt_data >> [ge_docs_generate >> dbt_docs_generate] >> dbt_cleanup 
