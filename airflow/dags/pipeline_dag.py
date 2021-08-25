@@ -64,11 +64,11 @@ with DAG(
     )
     validate_dbt_data = GreatExpectationsOperator( # sample showing dealing with single suite
     task_id='validate_transform',
-    expectation_suite_name='analytical_output.final',
+    expectation_suite_name='bank_transactions.analysis',
     batch_kwargs={
-        'datasource': 'postgres_astro',
-        'table': 'pickup_dropoff_borough_counts',
-        'data_asset_name': 'pickup_dropoff_borough_counts'
+        'datasource': 'postgres_docker',
+        'table': 'suspectTransactions',
+        'data_asset_name': 'suspectTransactions'
     },
     data_context_root_dir=GE_ROOT_DIR
 )
