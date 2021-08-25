@@ -83,7 +83,7 @@ with DAG(
     # This task re-builds the Great Expectations docs
     ge_docs_generate = BashOperator(
     task_id='ge_docs_generate',
-    bash_command=f'great_expectations docs build --directory {GE_ROOT_DIR} --assume-yes'
+    bash_command=f'great_expectations --v3-api docs build  --directory {GE_ROOT_DIR} --assume-yes'
 )
     
     dbt_cleanup = BashOperator(
