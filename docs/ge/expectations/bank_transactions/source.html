@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data documentation compiled by Great Expectations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title></title>
+
+    
+    
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/filter-control/bootstrap-table-filter-control.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <style>
+  
+
+body {
+  position: relative;
+}
+
+.container {
+  padding-top: 50px;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 90px;
+  z-index: 1;
+}
+
+.ge-section {
+  clear: both;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+}
+
+.popover {
+  max-width: 100%;
+}
+
+.cooltip {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cooltip .top {
+  min-width: 200px;
+  top: -6px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  padding: 10px 20px;
+  color: #FFFFFF;
+  background-color: #222222;
+  font-weight: normal;
+  font-size: 13px;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 99999999 !important;
+  box-sizing: border-box;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.cooltip:hover .top {
+  display: block;
+  z-index: 99999999 !important;
+}
+
+.cooltip .top i {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -12px;
+  width: 24px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.cooltip .top i::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background-color: #222222;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+.show-scrollbars {
+  overflow: auto;
+}
+
+td .show-scrollbars {
+  max-height: 80vh;
+}
+
+/*.show-scrollbars ul {*/
+/*  padding-bottom: 20px*/
+/*}*/
+
+.show-scrollbars::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.show-scrollbars::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.show-scrollbars::-webkit-scrollbar:horizontal {
+  height: 11px;
+}
+
+.show-scrollbars::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid white; /* should match background, can't be transparent */
+  background-color: rgba(0, 0, 0, .5);
+}
+
+#ge-cta-footer {
+  opacity: 0.9;
+  border-left-width: 4px
+}
+
+.carousel-caption {
+    position: relative;
+    left: 0;
+    top: 0;
+}</style>
+    <style>/*index page*/
+.ge-index-page-site-name-title {}
+.ge-index-page-table-container {}
+.ge-index-page-table {}
+.ge-index-page-table-profiling-links-header {}
+.ge-index-page-table-expectations-links-header {}
+.ge-index-page-table-validations-links-header {}
+.ge-index-page-table-profiling-links-list {}
+.ge-index-page-table-profiling-links-item {}
+.ge-index-page-table-expectation-suite-link {}
+.ge-index-page-table-validation-links-list {}
+.ge-index-page-table-validation-links-item {}
+
+/*breadcrumbs*/
+.ge-breadcrumbs {}
+.ge-breadcrumbs-item {}
+
+/*navigation sidebar*/
+.ge-navigation-sidebar-container {}
+.ge-navigation-sidebar-content {}
+.ge-navigation-sidebar-title {}
+.ge-navigation-sidebar-link {}</style>
+
+    
+  
+
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<script src="https://kit.fontawesome.com/8217dffd95.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    
+  
+
+
+  
+
+<link rel="shortcut icon" href="../../static/images/favicon.ico" type="image/x-icon"/>
+  </head>
+
+  <body>
+    
+
+    
+
+    
+  
+
+
+  
+
+<nav class="navbar bg-light navbar-expand-md sticky-top border-bottom" style="height: 70px">
+  <div class="mr-auto">
+    <nav class="d-flex align-items-center">
+      <div class="float-left navbar-brand m-0 h-100">
+        <a href="../../index.html">
+          <img
+            class="NO-CACHE"
+            src="https://great-expectations-web-assets.s3.us-east-2.amazonaws.com/logo-long.png?d=20210825T091605.764387Z&dataContextId=b6856f5b-b25f-4ba1-9c52-7a2edbf53b9d"
+            alt="Great Expectations"
+            style="width: auto; height: 50px"
+          />
+        </a>
+      </div>
+      
+        <ol class="ge-breadcrumbs breadcrumb d-md-inline-flex bg-light ml-2 mr-0 mt-0 mb-0 pt-0 pb-0 d-none">
+            <li class="ge-breadcrumbs-item breadcrumb-item"><a href="../../index.html">Home</a></li>
+            <li class="ge-breadcrumbs-item breadcrumb-item active" aria-current="page">Expectations / bank_transactions.source</li>
+        </ol>
+      
+    </nav>
+  </div>
+</nav>
+    
+
+    <div class="container-fluid pt-4 pb-4 pl-5 pr-5">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12 d-sm-block px-0">
+  <div class="mb-4">
+  
+    <div class="col-12 p-0">
+      <h4>Expectation Suite</h4>
+      <p class="lead">A collection of Expectations defined for batches of data.</p>
+    </div>
+  
+</div>
+  <div class="sticky">
+    
+    
+      <div class="card bg-light d-md-block d-none" style="max-height: 75vh">
+  <div class="card-header p-2">
+    <strong>Table of Contents</strong>
+  </div>
+  <div class="card-body p-0" style="overflow: auto; height: 100%">
+    <nav id="navigation" class="rounded navbar navbar-light bg-light ge-navigation-sidebar-container p-1" style="max-height: 65vh;">
+      <ul class="nav nav-pills ge-navigation-sidebar-content col-12 p-0" style="max-height: 65vh">
+        
+          
+            <li class="nav-item col-12">
+              <a class="nav-link ge-navigation-sidebar-link" href="#section-1"
+               style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                <strong>Overview</strong>
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item col-12">
+              <a class="nav-link ge-navigation-sidebar-link ml-1" href="#section-2"
+                 style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                amount
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item col-12">
+              <a class="nav-link ge-navigation-sidebar-link ml-1" href="#section-3"
+                 style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                tx_id
+              </a>
+            </li>
+          
+        
+      </ul>
+    </nav>
+  </div>
+</div>
+    
+  </div>
+</div>
+        <div class="col-md-10 col-lg-10 col-xs-12 pl-md-4 pr-md-3">
+        
+          <div id="section-1" class="ge-section container-fluid mb-1 pb-1 pl-sm-3 px-0">
+    <div class="row" >
+        
+
+<div id="section-1-content-block-1" class="col-12" >
+
+    <div id="section-1-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    Overview
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-1-content-block-2" class="col-12 table-responsive mt-1" >
+
+    <div id="section-1-content-block-2-header" >
+        
+          
+            <div>
+              
+                <h6 class="m-0" >
+                    Info
+                </h6>
+            
+            </div>
+          
+        </div>
+
+
+
+
+<table
+  id="section-1-content-block-2-body"
+  class="table table-sm" style="margin-bottom:0.5rem !important; margin-top:0.5rem !important;" 
+  data-toggle="table"
+  
+>
+    
+    
+    
+      
+      
+      
+    
+      <thead hidden>
+        <tr>
+            
+                
+                <th
+                  
+                >
+                  
+                </th>
+            
+                
+                <th
+                  
+                >
+                  
+                </th>
+            
+        </tr>
+      </thead>
+
+    <tbody>
+      <tr>
+          <td id="section-1-content-block-2-cell-1-1" ><div class="show-scrollbars">Expectation Suite Name</div></td><td id="section-1-content-block-2-cell-1-2" ><div class="show-scrollbars">bank_transactions.source</div></td></tr><tr>
+          <td id="section-1-content-block-2-cell-2-1" ><div class="show-scrollbars">Great Expectations Version</div></td><td id="section-1-content-block-2-cell-2-2" ><div class="show-scrollbars">0.13.29</div></td></tr></tbody>
+</table>
+
+</div>
+        
+
+<div id="section-1-content-block-3" class="col-12" >
+
+    <div id="section-1-content-block-3-header" >
+        
+          
+            <div>
+              
+                <h6 class="m-0" >
+                    Table-Level Expectations
+                </h6>
+            
+            </div>
+          
+        </div>
+
+
+<ul id="section-1-content-block-3-body" >
+    
+            
+        
+        <li >
+                <span >
+                    Must have these columns in this order: <span class="badge badge-secondary" >id</span>, <span class="badge badge-secondary" >account_action</span>, <span class="badge badge-secondary" >user-id</span>, <span class="badge badge-secondary" >tx_id</span>, <span class="badge badge-secondary" >amount</span>, <span class="badge badge-secondary" >timestamp</span>
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    Must have greater than or equal to <span class="badge badge-secondary" >1000</span> and less than or equal to <span class="badge badge-secondary" >1000</span> rows.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+
+<div id="section-1-content-block-4" class="col-12 table-responsive mt-1" >
+
+    
+
+<div id="section-1-content-block-4-body" class="table table-sm" >
+  <div id="section-1-content-block-4-header" >
+        
+          
+            <div>
+              
+                <h6 class="m-0" >
+                    Notes
+                </h6>
+            
+            </div>
+          
+        </div>
+
+  
+        <p >This Expectation suite currently contains 12 total Expectations across 2 columns.</p>
+      
+    </div>
+
+</div>
+        
+    </div>
+</div>
+        
+          <div id="section-2" class="ge-section container-fluid mb-1 pb-1 pl-sm-3 px-0">
+    <div class="row" >
+        
+
+<div id="section-2-content-block-1" class="col-12" >
+
+    <div id="section-2-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    amount
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-2-content-block-2" class="col-12" >
+
+    
+
+<ul id="section-2-content-block-2-body" >
+    
+            
+        
+        <li >
+                <span >
+                    minimum value must be greater than or equal to <span class="badge badge-secondary" >4000</span> and less than or equal to <span class="badge badge-secondary" >10000</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    maximum value must be greater than or equal to <span class="badge badge-secondary" >9000000</span> and less than or equal to <span class="badge badge-secondary" >10000000</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    mean must be greater than or equal to <span class="badge badge-secondary" >5205328.976</span> and less than or equal to <span class="badge badge-secondary" >5205328.976</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    median must be greater than or equal to <span class="badge badge-secondary" >5176254.5</span> and less than or equal to <span class="badge badge-secondary" >5176254.5</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    quantiles must be within the following value ranges.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+
+
+
+<table
+  id="section-2-content-block-2-body"
+  class="table table-sm table-unbordered col-4 mt-2" 
+  data-toggle="table"
+  
+>
+    
+    
+    
+      
+    
+      <thead >
+        <tr>
+            
+                
+                <th
+                  
+                >
+                  Quantile
+                </th>
+            
+                
+                <th
+                  
+                >
+                  Min Value
+                </th>
+            
+                
+                <th
+                  
+                >
+                  Max Value
+                </th>
+            
+        </tr>
+      </thead>
+
+    <tbody>
+      <tr>
+          <td id="section-2-content-block-2-cell-1-1" ><div class="show-scrollbars">0.05</div></td><td id="section-2-content-block-2-cell-1-2" ><div class="show-scrollbars">1084953</div></td><td id="section-2-content-block-2-cell-1-3" ><div class="show-scrollbars">1084953</div></td></tr><tr>
+          <td id="section-2-content-block-2-cell-2-1" ><div class="show-scrollbars">Q1</div></td><td id="section-2-content-block-2-cell-2-2" ><div class="show-scrollbars">2833146</div></td><td id="section-2-content-block-2-cell-2-3" ><div class="show-scrollbars">2833146</div></td></tr><tr>
+          <td id="section-2-content-block-2-cell-3-1" ><div class="show-scrollbars">Median</div></td><td id="section-2-content-block-2-cell-3-2" ><div class="show-scrollbars">5168373</div></td><td id="section-2-content-block-2-cell-3-3" ><div class="show-scrollbars">5168373</div></td></tr><tr>
+          <td id="section-2-content-block-2-cell-4-1" ><div class="show-scrollbars">Q3</div></td><td id="section-2-content-block-2-cell-4-2" ><div class="show-scrollbars">7588266</div></td><td id="section-2-content-block-2-cell-4-3" ><div class="show-scrollbars">7588266</div></td></tr><tr>
+          <td id="section-2-content-block-2-cell-5-1" ><div class="show-scrollbars">0.95</div></td><td id="section-2-content-block-2-cell-5-2" ><div class="show-scrollbars">9505198</div></td><td id="section-2-content-block-2-cell-5-3" ><div class="show-scrollbars">9505198</div></td></tr></tbody>
+</table></li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must never be null.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    fraction of unique values must be exactly <span class="badge badge-secondary" >1.0</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    value types must belong to this set: <span class="badge badge-secondary" >INTEGER</span> <span class="badge badge-secondary" >integer</span> <span class="badge badge-secondary" >int</span> <span class="badge badge-secondary" >int_</span> <span class="badge badge-secondary" >int8</span> <span class="badge badge-secondary" >int16</span> <span class="badge badge-secondary" >int32</span> <span class="badge badge-secondary" >int64</span> <span class="badge badge-secondary" >uint8</span> <span class="badge badge-secondary" >uint16</span> <span class="badge badge-secondary" >uint32</span> <span class="badge badge-secondary" >uint64</span> <span class="badge badge-secondary" >INT</span> <span class="badge badge-secondary" >INTEGER</span> <span class="badge badge-secondary" >INT64</span> <span class="badge badge-secondary" >TINYINT</span> <span class="badge badge-secondary" >BYTEINT</span> <span class="badge badge-secondary" >SMALLINT</span> <span class="badge badge-secondary" >BIGINT</span> <span class="badge badge-secondary" >IntegerType</span> <span class="badge badge-secondary" >LongType</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+    </div>
+</div>
+        
+          <div id="section-3" class="ge-section container-fluid mb-1 pb-1 pl-sm-3 px-0">
+    <div class="row" >
+        
+
+<div id="section-3-content-block-1" class="col-12" >
+
+    <div id="section-3-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    tx_id
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-3-content-block-2" class="col-12" >
+
+    
+
+<ul id="section-3-content-block-2-body" >
+    
+            
+        
+        <li >
+                <span >
+                    values must never be null.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    fraction of unique values must be exactly <span class="badge badge-secondary" >1.0</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+    </div>
+</div>
+        
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

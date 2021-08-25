@@ -1,0 +1,204 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "bank_transactions.source",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "id",
+          "account_action",
+          "user-id",
+          "tx_id",
+          "amount",
+          "timestamp"
+        ]
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "max_value": 1000,
+        "min_value": 1000
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_min_to_be_between",
+      "kwargs": {
+        "column": "amount",
+        "max_value": 10000,
+        "meta": {
+          "notes": {
+            "content": [
+              "#### Bank policy allows transactions upwards of 4,000"
+            ],
+            "format": "markdown"
+          }
+        },
+        "min_value": 4000
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_max_to_be_between",
+      "kwargs": {
+        "column": "amount",
+        "max_value": 10000000,
+        "meta": {
+          "notes": {
+            "content": [
+              "#### Bank policy allows transactions of upto 10M"
+            ],
+            "format": "markdown"
+          }
+        },
+        "min_value": 9000000
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_mean_to_be_between",
+      "kwargs": {
+        "column": "amount",
+        "max_value": 5205328.976,
+        "min_value": 5205328.976
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_median_to_be_between",
+      "kwargs": {
+        "column": "amount",
+        "max_value": 5176254.5,
+        "min_value": 5176254.5
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_quantile_values_to_be_between",
+      "kwargs": {
+        "allow_relative_error": "lower",
+        "column": "amount",
+        "quantile_ranges": {
+          "quantiles": [
+            0.05,
+            0.25,
+            0.5,
+            0.75,
+            0.95
+          ],
+          "value_ranges": [
+            [
+              1084953,
+              1084953
+            ],
+            [
+              2833146,
+              2833146
+            ],
+            [
+              5168373,
+              5168373
+            ],
+            [
+              7588266,
+              7588266
+            ],
+            [
+              9505198,
+              9505198
+            ]
+          ]
+        }
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "amount"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_proportion_of_unique_values_to_be_between",
+      "kwargs": {
+        "column": "amount",
+        "max_value": 1.0,
+        "min_value": 1.0
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_type_list",
+      "kwargs": {
+        "column": "amount",
+        "type_list": [
+          "INTEGER",
+          "integer",
+          "int",
+          "int_",
+          "int8",
+          "int16",
+          "int32",
+          "int64",
+          "uint8",
+          "uint16",
+          "uint32",
+          "uint64",
+          "INT",
+          "INTEGER",
+          "INT64",
+          "TINYINT",
+          "BYTEINT",
+          "SMALLINT",
+          "BIGINT",
+          "IntegerType",
+          "LongType"
+        ]
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "tx_id"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_proportion_of_unique_values_to_be_between",
+      "kwargs": {
+        "column": "tx_id",
+        "max_value": 1.0,
+        "meta": {
+          "notes": {
+            "content": [
+              "#### ALL Transaction identifiers are unique"
+            ],
+            "format": "markdown"
+          }
+        },
+        "min_value": 1.0
+      },
+      "meta": {}
+    }
+  ],
+  "meta": {
+    "citations": [
+      {
+        "batch_request": {
+          "data_asset_name": "Transactions.csv",
+          "data_connector_name": "default_inferred_data_connector_name",
+          "datasource_name": "data_dir",
+          "limit": 1000
+        },
+        "citation_date": "2021-08-25T09:03:16.852190Z",
+        "comment": "Created suite added via CLI"
+      }
+    ],
+    "great_expectations_version": "0.13.29"
+  }
+}

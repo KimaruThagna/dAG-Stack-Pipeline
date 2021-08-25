@@ -41,7 +41,7 @@ with DAG(
     assets_to_validate = [
         {
             'batch_kwargs': {
-                'path': f'{DATA_DIR}/mock_transaction_data.csv',
+                'path': f'{DATA_DIR}/Transactions.csv',
                 'datasource': 'data_dir'
             },
             'expectation_suite_name': 'bank_transactions.source'
