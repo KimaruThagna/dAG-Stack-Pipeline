@@ -9,7 +9,6 @@ export AIRFLOW__WEBSERVER__SECRET_KEY
 
 DBT_POSTGRESQL_CONN="postgresql+psycopg2://${DBT_POSTGRES_USER}:${DBT_POSTGRES_PASSWORD}@${DBT_POSTGRES_HOST}:${POSTGRES_PORT}/${DBT_POSTGRES_DB}"
 
-cd /dbt && dbt seed
 rm -f /airflow/airflow-webserver.pid
 
 sleep 10

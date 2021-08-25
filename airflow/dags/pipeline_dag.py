@@ -62,16 +62,16 @@ with DAG(
         task_id="dbt_run",
         bash_command=f"cd {DBT_DIR} && dbt run --profiles-dir {DBT_DIR} --project-dir {DBT_DIR}",
     )
-    validate_dbt_data = GreatExpectationsOperator( # sample showing dealing with single suite
-    task_id='validate_transform',
-    expectation_suite_name='bank_transactions.analysis',
-    batch_kwargs={
-        'datasource': 'postgres_docker',
-        'table': 'suspectTransactions',
-        'data_asset_name': 'suspectTransactions'
-    },
-    data_context_root_dir=GE_ROOT_DIR
-)
+#     validate_dbt_data = GreatExpectationsOperator( # sample showing dealing with single suite
+#     task_id='validate_transform',
+#     expectation_suite_name='bank_transactions.analysis',
+#     batch_kwargs={
+#         'datasource': 'postgres_docker',
+#         'table': 'suspectTransactions',
+#         'data_asset_name': 'suspectTransactions'
+#     },
+#     data_context_root_dir=GE_ROOT_DIR
+# )
     
     dbt_docs_generate = BashOperator(
     task_id='dbt_docs_generate',
@@ -93,5 +93,5 @@ with DAG(
 
    
 
-    validate_source_data >> dbt_seed >> dbt_test >> dbt_run >> \
-    validate_dbt_data >> [ge_docs_generate >> dbt_docs_generate] >> dbt_cleanup 
+    validate_source_data >> dbt_seed >> dbt_test >> dbt_run
+    #validate_dbt_data >> [ge_docs_generate >> dbt_docs_generate] >> dbt_cleanup 
