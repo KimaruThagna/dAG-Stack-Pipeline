@@ -5,19 +5,14 @@ sources:
     database: dbtdb 
     schema: dbt_raw_data 
     tables:
-      - name: Customer
-        describe: Customer information
-      - name: PaymentPlan
-        describe: Attributes associated to a payment plan. 
-      - name: Account
-        describe: Individual Account information
-      - name: Payment
-        describe: Attributes associated to a single payment. 
+      - name: Transactions
+        describe: Transactions information
+     
 
 models:
   - name: bigCustomerTransactions
-    description: Transactions value of over 7,000,000
+    description: Deposit transactions with value of over 7,000,000
 
   - name: suspectTransactions
-    description: Transactions value of over 4,000,000. Bank policy expects 3,000,000 and below per transaction
+    description: Withdrawal transactions with value of over 5,000,000. Bank policy expects 4,999,000 and below per transaction
 
