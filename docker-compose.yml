@@ -71,19 +71,18 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 8081:8080
     depends_on:
       - postgres-airflow
       - postgres-dbt
 
   data_docs:
     image: flashspys/nginx-static
-    container_name: ge_data_docs
+    container_name: data_docs
     ports:
       - 8087:80
     volumes: 
-      - ./docs/ge:/static/ge
-      - ./docs/dbt:/static/dbt
+      - ./docs:/static
     depends_on:
       - airflow
       - postgres-dbt
