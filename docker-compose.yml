@@ -77,18 +77,22 @@ services:
       - postgres-airflow
       - postgres-dbt
 
-  ge_data_docs:
+  data_docs:
     image: flashspys/nginx-static
     container_name: ge_data_docs
     ports:
       - 8087:80
     volumes: 
-      - ./docs/ge:/static
+      - ./docs/ge:/static/ge
+      - ./docs/dbt:/static/dbt
+    depends_on:
+      - airflow
+      - postgres-dbt
 
-  dbt_data_docs:
-    image: flashspys/nginx-static
-    container_name: dbt_data_docs
-    ports:
-      - 8089:80
-    volumes: 
-      - ./docs/dbt:/static
+  # dbt_data_docs:
+  #   image: flashspys/nginx-static
+  #   container_name: dbt_data_docs
+  #   ports:
+  #     - 8089:80
+  #   volumes: 
+  #     - ./docs/dbt:/static
