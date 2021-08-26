@@ -1,0 +1,91 @@
+{
+    "data_asset_type": null,
+    "expectation_suite_name": "bank_transactions.analysis",
+    "expectations": [
+      
+      {
+        "expectation_type": "expect_column_min_to_be_between",
+        "kwargs": {
+          "column": "amount",
+          "min_value": 5000000,
+          "meta": {
+            "notes": {
+              "content": [
+                "#### Any withdrawal above 5M is suspect according to bank policy"
+              ],
+              "format": "markdown"
+            }
+          },
+          "max_value": 10000000
+        },
+        "meta": {}
+      },
+     
+     
+      {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "column": "amount"
+        },
+        "meta": {}
+      },
+     
+      {
+        "expectation_type": "expect_column_values_to_be_in_type_list",
+        "kwargs": {
+          "column": "amount",
+          "type_list": [
+            "INTEGER",
+            "integer",
+            "int",
+            "int_",
+            "int8",
+            "int16",
+            "int32",
+            "int64",
+            "uint8",
+            "uint16",
+            "uint32",
+            "uint64",
+            "INT",
+            "INTEGER",
+            "INT64",
+            "TINYINT",
+            "BYTEINT",
+            "SMALLINT",
+            "BIGINT",
+            "IntegerType",
+            "LongType"
+          ]
+        },
+        "meta": {}
+      },
+      {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "column": "tx_id"
+        },
+        "meta": {}
+      },
+      {
+        "expectation_type": "expect_column_proportion_of_unique_values_to_be_between",
+        "kwargs": {
+          "column": "tx_id",
+          "max_value": 1.0,
+          "meta": {
+            "notes": {
+              "content": [
+                "#### ALL Transaction identifiers are unique"
+              ],
+              "format": "markdown"
+            }
+          },
+          "min_value": 1.0
+        },
+        "meta": {}
+      }
+    ],
+    "meta": {
+      "great_expectations_version": "0.13.29"
+    }
+  }
