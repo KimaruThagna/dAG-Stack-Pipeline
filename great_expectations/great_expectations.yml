@@ -34,7 +34,22 @@ datasources:
         batch_identifiers:
           - default_identifier_name
         module_name: great_expectations.datasource.data_connector
-
+  postgres_docker:
+  # copied from config_variables_file_path for demo purposes
+    credentials:
+      drivername: postgresql
+      host: postgres-dbt
+      port: '5432'
+      username: dbtuser
+      password: pssd
+      database: dbtdb
+  # copied from config_variables_file_path for demo purposes
+    data_asset_type:
+      module_name: great_expectations.dataset
+      class_name: SqlAlchemyDataset
+    module_name: great_expectations.datasource
+    class_name: SqlAlchemyDatasource
+  config_variables_file_path: uncommitted/config_variables.yml # best practice to store config variables
 # This config file supports variable substitution which enables: 1) keeping
 # secrets out of source control & 2) environment-based configuration changes
 # such as staging vs prod.

@@ -61,7 +61,7 @@ services:
       - postgres-airflow
       - postgres-dbt
     ports:
-      - 8000:8080
+      - 8080:8080
     volumes:
       - ./dbt:/dbt
       - ./airflow:/airflow

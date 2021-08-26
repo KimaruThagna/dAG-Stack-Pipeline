@@ -12,7 +12,7 @@ DBT_POSTGRESQL_CONN="postgresql+psycopg2://${DBT_POSTGRES_USER}:${DBT_POSTGRES_P
 rm -f /airflow/airflow-webserver.pid
 
 sleep 10
-airflow upgradedb
+airflow db upgrade
 sleep 10
 airflow connections --add --conn_id 'dbt_postgres_instance_raw_data' --conn_uri $DBT_POSTGRESQL_CONN
 airflow scheduler & airflow webserver
